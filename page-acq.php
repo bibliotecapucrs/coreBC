@@ -1,8 +1,11 @@
 <?php
 /**
+ * Template Name: Core Acq
+ *
  * @package CoreBC
  * @subpackage corebc
  */
+
 
 //chama o cabeçalho
 	get_header();
@@ -11,9 +14,10 @@
 	get_sidebar();
 
 //chama o conteúdo básico
-	get_template_part( 'template-parts/core_pages/core', 'geral' );
-	//get_template_part( 'template-parts/post/core', 'content' );
-
+	get_template_part( 'template-parts/core_pages/core', 'acq' );
+	
 //chama o rodapé    
 	get_footer(); 
+
+
 ?>

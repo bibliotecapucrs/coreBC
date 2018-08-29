@@ -1,0 +1,45 @@
+/* Change background image and font family */
+body {
+  background-image: url(../../assets/img/background.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+
+}
+ 
+/* Change Width and Height of Logo Image + Add Custom Image File */
+#login {
+  width: 50%;
+}
+.login form {
+  padding: 80px;
+  background: rgba(255, 255, 255, 0.8);
+}
+.login h1 a {
+  background-image: url(logo.png);
+  width: 313px;
+  background-size: 313px ;
+}
+ 
+/* Add a few changes to the color and style of form itself */
+.login label {
+  color: #454545;
+  display: block;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+ 
+.login form .input {
+  font-weight: normal;
+  border: 1px #f5f5f5 solid;
+}
+ 
+.login #backtoblog a, .login #nav a {
+  color: #ffffff;
+}
+ 
+.wp-core-ui .button-primary {
+  background: #0066B3;
+}
