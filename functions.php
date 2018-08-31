@@ -27,6 +27,10 @@ foreach (glob(get_template_directory() . '/inc/classes/widgets/*.php') as $filen
     include $filename;
 }
 
+foreach (glob(get_template_directory() . '/inc/classes/role/*.php') as $core_role)
+{
+    include $core_role;
+}
 
 require get_template_directory() . '/inc/classes/Autoload.php';
 
