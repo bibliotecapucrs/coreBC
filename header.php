@@ -161,7 +161,6 @@
           </li>
 
 
-
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="nav-item  dropdown notifications-menu">
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -217,33 +216,18 @@
               <li class="user-header">
                 <img src="<?php echo get_template_directory_uri(); ?>/assets/img/admin.jpg" class="rounded-circle" alt="User Image">
                 <p>
-                  <?php  echo  $current_user->user_firstname. ' ' . $current_user->user_lastname; ?> - Web Developer
+                  <?php  echo  $current_user->user_firstname. ' ' . $current_user->user_lastname; ?> - <?php echo  $current_user->user_firstname;?>
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
 
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="float-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
                 </div>
                 <div class="float-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="<?php echo wp_logout_url( home_url() ); ?>" class="btn btn-default btn-flat">Sair</a>
                 </div>
               </li>
             </ul>

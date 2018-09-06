@@ -6,6 +6,7 @@ function corebc_setup(){
     load_theme_textdomain(get_template_directory() . '/languages');
 }
 
+
 //Remove a barra de administração
 add_action('after_setup_theme', 'remove_admin_bar');
  function remove_admin_bar() {

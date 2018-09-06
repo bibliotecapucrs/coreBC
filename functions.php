@@ -1,25 +1,12 @@
 <?php
 
 
-
 //Funções gerais
-//require get_template_directory() . '/inc/classes/Autoload.php';
-require get_template_directory() . '/inc/functions/corebc.php';
 
-//Funções do cabeçalho
-require get_template_directory() . '/inc/functions/header.php';
-
-// Chama os widgets
-require get_template_directory() . '/inc/functions/widgets.php';
-
-//Chama os menus
-require get_template_directory() . '/inc/functions/menu.php';
-
-//Funções de post
-require get_template_directory() . '/inc/functions/post.php';
-
-//Funções metabox de páginas
-require get_template_directory() . '/inc/functions/metabox_page.php';
+foreach (glob(get_template_directory() . '/inc/functions/*.php') as $core_func)
+{
+    include $core_func;
+}
 
 
 foreach (glob(get_template_directory() . '/inc/classes/widgets/*.php') as $filename)
@@ -40,6 +27,8 @@ $Autoload = new \CoreBC\Autoload();
 $Autoload->register();
 $Autoload->addNamespace('CoreBC', get_template_directory() . '/inc/classes');
 unset($Autoload);
+
+
 
 
 // Call to actions/filters of the theme to enable features, register sidebars, enqueue scripts and styles.
