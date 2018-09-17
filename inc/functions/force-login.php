@@ -13,14 +13,11 @@ Domain Path: /languages
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
-
 function v_forcelogin() {
-
   // Exceptions for AJAX, Cron, or WP-CLI requests
   if ( ( defined( 'DOING_AJAX' ) && DOING_AJAX ) || ( defined( 'DOING_CRON' ) && DOING_CRON ) || ( defined( 'WP_CLI' ) && WP_CLI ) ) {
     return;
   }
-
   // Redirect unauthorized visitors
   if ( ! is_user_logged_in() ) {
     // Get URL

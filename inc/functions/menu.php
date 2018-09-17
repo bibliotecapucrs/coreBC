@@ -1,5 +1,4 @@
 <?php
-
 //Habilita e adiciona menus ao tema
 function register_corebc_menu() {
   register_nav_menus(
@@ -11,12 +10,9 @@ function register_corebc_menu() {
      )
    );
  }
-
  add_action( 'init', 'register_corebc_menu' );
 
-
 //Campo Ícone do menu
-
 require_once(get_template_directory() . '/inc/classes/Hooks/edit_custom_walker.php');
 class rc_sweet_custom_menu {
 
@@ -68,5 +64,4 @@ function rc_scm_update_custom_nav_fields( $menu_id, $menu_item_db_id, $args ) {
 
 // instantiate plugin's class
 $GLOBALS['sweet_custom_menu'] = new rc_sweet_custom_menu();
-
- ?>
+?>

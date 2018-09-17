@@ -12,18 +12,20 @@
 
 
 //namespace LibCore1\Widgets;
+//
 
-class LC1_cutter extends wp_widget {
+
+class corebc_blog extends wp_widget {
 
 	/**
 	 * Sets up the widgets name etc
 	 */
 	public function __construct() {
 		$widget_ops = array( 
-			'classname' => 'cutter_sanborn',
-			'description' => 'Consulta a tabela Cutter-Sanborn.',
+			'classname' => 'CoreBC_Blog',
+			'description' => 'Previsão do tempo.',
 		);
-		parent::__construct( 'cutter_sanborn', 'Cutter-Sanborn', $widget_ops );
+		parent::__construct( 'CoreBC_Blog', 'Core Blog', $widget_ops );
 	}
 
 	/**
@@ -34,7 +36,7 @@ class LC1_cutter extends wp_widget {
 	 */
 	public function widget( $args, $instance ) {
 		// outputs the content of the widget
-		include"html/index.php";
+		include"CoreBC_Blog/index.php";
 
 	}
 
@@ -44,7 +46,7 @@ class LC1_cutter extends wp_widget {
 	 * @param array $instance The widget options
 	 */
 	public function form( $instance ) {
-		echo "<p>Exibe o formulário de consulta para a Tabela Cutter-Sanborn</p>";
+		echo "<p>Exibe os últimos posts</p>";
 		// outputs the options form on admin
 	}
 
@@ -62,7 +64,7 @@ class LC1_cutter extends wp_widget {
 }
 
 add_action( 'widgets_init', function(){
-	register_widget( 'LC1_cutter' );
+	register_widget( 'corebc_blog' );
 });
 
 

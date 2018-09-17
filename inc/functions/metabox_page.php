@@ -14,9 +14,7 @@ function corebc_add_custombox()
         );
     }
 }
-
 add_action('add_meta_boxes', 'corebc_add_custombox');
-
 function corebc_custom_box_html($post)
 {
 ?>
@@ -28,10 +26,6 @@ function corebc_custom_box_html($post)
 
 <?php
 }
-?>
-
-
-<?php
 
 function corebc_save_postdata($post_id)
 {

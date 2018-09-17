@@ -1,18 +1,15 @@
 <?php
-
 // load theme textdomain for translation
 add_action('after_setup_theme', 'corebc_setup');
 function corebc_setup(){
     load_theme_textdomain(get_template_directory() . '/languages');
 }
 
-
 //Remove a barra de administração
 add_action('after_setup_theme', 'remove_admin_bar');
  function remove_admin_bar() {
   show_admin_bar(false);
 }
-
 
 //Modifica a tela de login padrão do Wordpress
 function modify_logo() {
@@ -46,7 +43,4 @@ function redirect_admin( $redirect_to, $request, $user ){
     return $redirect_to;
 }
 add_filter( 'login_redirect', 'redirect_admin', 10, 3 );
-
-
-
 ?>

@@ -11,7 +11,7 @@
 	get_sidebar();
 
 //chama o conteúdo básico
-	get_template_part( 'template-parts/core_pages/core_404', '' );
+	get_template_part( 'template-parts/core_pages/core', '404' );
 
 //chama o rodapé    
 	get_footer(); 

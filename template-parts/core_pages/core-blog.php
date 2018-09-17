@@ -3,7 +3,7 @@
 
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1> <?php echo the_title(); ?><small>Painel de controle</small></h1>
+    <h1> <a href="<?php the_permalink(); ?>"><?php bloginfo( 'name' ); ?></a><small>Painel de controle</small></h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> <?php echo the_title(); ?></a></li>
       <li class="active">Painel</li>
@@ -12,17 +12,8 @@
 
   <!-- Main content -->
   <section class="content">
-    <div class="row">  <!-- Pequenas caixinhas (Estatística em tempo real) -->  
-          <?php dynamic_sidebar( 'main-top-sidebar' ); ?>
-    </div><!-- /.row -->
-
-
     <div class="row"> <!-- Main row -->
       <section class="col-lg-8 connectedSortable"><!-- Left col -->
-
-        <?php dynamic_sidebar( 'main-left-sidebar' ); ?>
-
-
 
       <?php while(have_posts()): the_post(); ?>
       <div class="box box-primary">

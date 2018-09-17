@@ -3,7 +3,7 @@
 
   <!-- Content Header (Page header) -->
   <section class="content-header">
-    <h1> <?php echo the_title(); ?><small>Painel de controle</small></h1>
+    <h1> <a href="<?php echo get_home_url(); ?>"><?php bloginfo( 'name' ); ?></a><small>Painel de controle</small></h1>
     <ol class="breadcrumb">
       <li><a href="#"><i class="fa fa-dashboard"></i> <?php echo the_title(); ?></a></li>
       <li class="active">Painel</li>
@@ -12,23 +12,14 @@
 
   <!-- Main content -->
   <section class="content">
-    <div class="row">  <!-- Pequenas caixinhas (Estatística em tempo real) -->  
-          <?php dynamic_sidebar( 'main-top-sidebar' ); ?>
-    </div><!-- /.row -->
-
-
     <div class="row"> <!-- Main row -->
-      <section class="col-lg-8 connectedSortable"><!-- Left col -->
-
-        <?php dynamic_sidebar( 'main-left-sidebar' ); ?>
-
-
+      <section class="col-lg-8"><!-- Left col -->
 
       <?php while(have_posts()): the_post(); ?>
       <div class="box box-primary">
         <div class="box-header">
           <h3 class="timeline-header">
-            <a href="<?php the_permalink(); ?>"><?php the_title()?></a> 
+            <a href="<?php the_permalink(); ?>" ><?php the_title()?></a> 
           </h3>
           <small>
             <i class="fa fa-clock-o"></i> <?php the_time('j \d\e F \d\e Y'); ?> <?php the_time('H:i'); ?>
@@ -43,12 +34,9 @@
       </div>
 
       <?php endwhile; ?>
-
-
-       
       </section><!-- /.Left col -->
 
-        <!-- right col (We are only adding the ID to make the widgets sortable)-->
+      <!-- right col (We are only adding the ID to make the widgets sortable)-->
       <section class="col-lg-4 connectedSortable">
         <?php dynamic_sidebar( 'main-right-sidebar' ); ?>
       </section>

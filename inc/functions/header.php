@@ -1,5 +1,4 @@
 <?php
-
 //Logotipo customizável
 add_theme_support( 'custom-logo' );
 
@@ -30,5 +29,4 @@ $args = array(
 add_theme_support( 'custom-header', $args );
 }
 add_action( 'after_setup_theme', 'corebc_custom_header_setup' );
-
 ?>

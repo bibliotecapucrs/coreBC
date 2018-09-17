@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: Disable Default Avatars
  * Plugin URI: http://wordpress.stackexchange.com/questions/17413
@@ -22,7 +21,6 @@
  *
  * 
 */
-
 /*
 function get_avatar( $id_or_email, $size = '96', $default = '', $alt = false ) {
     if ( ! get_option('show_avatars') )
@@ -59,5 +57,4 @@ function __limit_default_avatars( $defaults )
 add_filter( 'avatar_defaults', '__limit_default_avatars' );
 endif;
 */
-
 ?>
