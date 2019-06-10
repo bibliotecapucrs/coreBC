@@ -1,36 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html <?php language_attributes(); ?> class="no-js no-svg">
 <head>
-  <meta charset="utf-8">
+  <meta charset="<?php bloginfo('charset'); ?>">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><?php bloginfo( 'name' ); ?></title>
+  <link rel="profile" href="http://gmpg.org/xfn/11" />
+  <link rel="pingback" href="<?php bloginfo('pingback_url'); ?>" />
 
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport">
+  <link rel="Shortcut Icon" href="http://biblioteca.pucrs.br/wp-content/themes/bce-responsive-mobile/favicon.png" />
 
-  <!--Bootstrap v4.1.3-->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/all.min.css">
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/v4-shims.css"> 
-
-  <!--Tema CORE BC-->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/core_bc.css">
-  
-  <!-- Morris chart -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/morris.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/jquery-jvectormap.css">
-  <!-- Date Picker -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap-datepicker.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/daterangepicker.css">
-  <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap3-wysihtml5.min.css">
-
-    <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/skins/skin-blue.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,12 +19,20 @@
   <![endif]-->
 
 <?php
+  wp_head();
   global $current_user;
   get_currentuserinfo();
 ?>
 
-</head>
+<script>
+function resetCookie () {
+    jq.cookie( 'bp-activity-oldestpage', 1, {
+      path: '/'
+    } );
+}
+</script>
 
+</head>
 
 <body class="hold-transition skin-blue fixed sidebar-mini">
   <div class="wrapper">
@@ -73,161 +60,157 @@
       <div class="navbar-custom-menu collapse navbar-collapse ">
 
         <ul class="nav navbar-nav ml-auto p-2 bd-highlight">
-         
-          <!-- Messages: style can be found in dropdown.less-->
-          <li class="nav-item dropdown messages-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="fas fa-bullhorn"></i>
-              <span class="label badge badge-success">4</span>
+        <?php
+
+        if ( bp_has_notifications( bp_ajax_querystring( 'notifications' ) ) ) :
+          //bp_nouveau_pagination( 'top' ); 
+        ?>
+             <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown messages-menu">
+            <a href="#" class="nav-link dropdown-toggle" title="Notificações" data-toggle="dropdown">
+              <i class="far fa-bell"></i>
+              <span class="label badge badge-warning"><?php echo bp_notifications_get_unread_notification_count( bp_loggedin_user_id() ); ?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Você tem 4 mensagens</li>
-             
+              <li class="header">Você tem <?php echo bp_notifications_get_unread_notification_count( bp_loggedin_user_id() ); ?> notificações</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  
-                  <li><!-- start message -->
-                    <a href="#">
-                      <div class="float-left">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/admin.jpg" class="rounded-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Fulano da Silva
-                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                      </h4>
-                      <p>Fechamento da biblioteca</p>
-                    </a>
+
+                <?php
+
+                 while ( bp_the_notifications() ) :
+                  bp_the_notification();
+              ?>
+                  <li class="bc-notify"><!-- start message -->
+                   
+
+                      <h4 class="bc-notify">
+                        <?php bp_the_notification_description(); ?>
+                        <small><i class="fa fa-clock-o"></i> <?php bp_the_notification_time_since(); ?></small>
+                        <span class="bc-action-notify"><?php bp_the_notification_action_links(); ?></span>
+
+                      </h4>                  
                   </li>
-
-
                   <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="float-left">
-                        <img src="assets/img/avatar7.png" class="rounded-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Roger C Guilherme
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                <?php endwhile; ?>
 
-                  <li>
-                    <a href="#">
-                      <div class="float-left">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/user4-128x128.jpg" class="rounded-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                <?php wp_nonce_field( 'notifications_bulk_nonce', 'notifications_bulk_nonce' ); ?>
 
-                  <li>
-                    <a href="#">
-                      <div class="float-left">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/user3-128x128.jpg" class="rounded-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
 
-                  <li>
-                    <a href="#">
-                      <div class="float-left">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/img/user4-128x128.jpg" class="rounded-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
+                <?php //bp_nouveau_pagination( 'bottom' ); ?>
+              
 
-                </ul>
+                </ul>         
               </li>
-              <li class="footer"><a href="#">Ver todas</a></li>
+              <li class="footer"><a href="/membros/me/notifications/">Ver todas as mensagens</a></li>
             </ul>
           </li>
+          <?php else : ?>
+
+         <li class="messages-menu">
+            <a href="/membros/me/notifications/" class="nav-link" title="Notificações">
+              <i class="far fa-bell"></i>
+            </a>
+        </li>
+  <?php //bp_nouveau_user_feedback( 'member-notifications-none' ); ?>
+
+<?php endif; ?>
 
 
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="nav-item  dropdown notifications-menu">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
-              <span class="label badge badge-warning">10</span>
+            <a href="#" class="nav-link dropdown-toggle" title="Atalhos" data-toggle="dropdown">
+              <i class="fas fa-rocket"></i>
+              <span class="label badge badge-warning">1</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Você tem 1 novo comunicado</li>
+              <li class="header">Atalhos</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
                   <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    <a href="http://access.rdatoolkit.org/" target="_blank">
+                      <i class="fas fa-database text-aqua"></i> RDA Toolkit
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
+                    <a href="http://abcd.pucrs.br/" target="_blank">
+                      <i class="fas fa-database text-aqua"></i> ABCD
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
+                    <a href="http://www.pucrs.br/biblioteca/interativo/" target="_blank">
+                      <i class="fas fa-newspaper text-aqua"></i> Interativo
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
+                    <a href="http://10.16.118.49/nucom/comunicados/" target="_blank">
+                      <i class="fa fa-users text-yellow"></i> Comunicados para toda equipe
                     </a>
                   </li>
                   <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
+                    <a href="http://core.pucrs.br/grupos/bibliotecarios/activity/">
+                      <i class="fas fa-book-reader text-aqua"></i> Comunicados para bibliotecários
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://core.pucrs.br/membros/me/activity/groups/">
+                      <i class="fas fa-comments text-aqua"></i> Atividades dos grupos
+                    </a>
+                  </li>
+                  <li>
+                    <a href="http://core.pucrs.br/events/">
+                      <i class="fas fa-calendar-alt text-aqua"></i> Agenda completa
                     </a>
                   </li>
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <!--<li class="footer"><a href="#">View all</a></li>-->
             </ul>
           </li>
 
 
-          <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="nav-link  dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/img/admin.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php  echo  $current_user->user_firstname. ' ' . $current_user->user_lastname; ?></span>
+              <?php 
+              echo bp_core_fetch_avatar( array('item_id' => bp_loggedin_user_id(),'width' => 50,'height' => 50,'class' => 'user-image', )); 
+              ?>
+              <span class="hidden-xs"><?php bp_core_get_userid();?><?php  echo  $current_user->user_firstname. ' ' . $current_user->user_lastname; ?></span>
+    
             </a>
             <ul class="dropdown-menu">
-              <!-- User image -->
+          <!-- User image -->
               <li class="user-header">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/admin.jpg" class="rounded-circle" alt="User Image">
+                  <?php echo bp_core_fetch_avatar( array('item_id' => bp_loggedin_user_id(),'width' => 150,'height' => 150,'class' => 'rounded-circle', )); ?>
                 <p>
-                  <?php  echo  $current_user->user_firstname. ' ' . $current_user->user_lastname; ?> - <?php echo  $current_user->user_firstname;?>
-                  <small>Member since Nov. 2012</small>
+                  <?php  echo  $current_user->user_firstname. ' ' . $current_user->user_lastname; ?>
+                  <!--<small>Member since Nov. 2012</small>-->
                 </p>
               </li>
-
+              <!-- Menu Body -->
+              <li class="user-body">
+                <div class="row">
+                  <div class="col-sm text-center">
+                    <a href="/membros/me/groups/my-groups/" title="Meus grupos" class="btn btn-light">Grupos</a>
+                  </div>
+                  <div class="col-sm text-center">
+                    <a href="/membros/me/eventos/" title="Meus eventos"  class="btn btn-light">Eventos</a>
+                  </div>
+                  <div class="col-sm text-center">
+                    <a href="/membros/me/notifications/" title="Minhas notificações"  class="btn btn-light">Notificações</a>
+                  </div>
+                </div>
+                <!-- /.row -->
+              </li>
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="float-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                  <a href="/membros/me">Perfil</a>
                 </div>
                 <div class="float-right">
                   <a href="<?php echo wp_logout_url( home_url() ); ?>" class="btn btn-default btn-flat">Sair</a>
+              
                 </div>
               </li>
             </ul>
@@ -235,6 +218,9 @@
         </ul>
       </div>
     </nav>
+
+
+
 
   </header>
   <!-- Left side column. contains the logo and sidebar -->
